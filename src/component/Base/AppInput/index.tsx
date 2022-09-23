@@ -61,6 +61,9 @@ export const AppInput = React.forwardRef(function AppInput(
                         //     color: (theme: Theme) => theme.color.gray30,
                         //     opacity: 1,
                         // },
+                        '&.Mui-disabled': {
+                            backgroundColor: theme.color.gray10
+                        }
                     },
                     ...sx,
                 }}

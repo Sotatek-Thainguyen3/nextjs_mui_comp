@@ -1,7 +1,10 @@
-import '../styles/globals.css'
+import '../../styles/globals.css'
 import type {AppProps} from 'next/app'
 import Head from "next/head";
 import {ThemeProvider} from "@mui/material";
+import {theme} from "../utils/theme";
+import store from "../state/store";
+import {Provider} from "react-redux";
 
 function MyApp({Component, pageProps}: AppProps) {
     return (<>
@@ -9,12 +12,12 @@ function MyApp({Component, pageProps}: AppProps) {
             <title>My page</title>
             <meta name="viewport" content="initial-scale=1, width=device-width"/>
         </Head>
-        {/*<Provider store={store}>*/}
-        {/*    <ThemeProvider theme={theme}>*/}
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
                 <Component {...pageProps} />
-            {/*</ThemeProvider>*/}
-        {/*</Provider>*/}
-       </>)
+            </ThemeProvider>
+        </Provider>
+    </>)
 }
 
 export default MyApp
