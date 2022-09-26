@@ -1,9 +1,11 @@
-import {combineReducers, configureStore, createStore} from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import infoReducer from './info/reducer'
+import todoReducer from './todo/reducer'
 
 export default configureStore({
     reducer: {
-        info: infoReducer
+        info: infoReducer,
+        todo: todoReducer
     },
     devTools: true,
 });

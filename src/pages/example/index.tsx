@@ -13,10 +13,60 @@ import {
 import {AppBox, AppDateRangePicker, AppInput} from "../../component/Base";
 import IconDelete from 'src/assets/icons/close.svg';
 import {TypeTypography} from "../../utils/theme";
-import {useState} from "react";
+import React, {useState} from "react";
 import AppModal from "../../component/Base/AppModal";
 import {useToggle} from "../../hooks/useToggle";
-import {minWidth} from "@mui/system";
+import styled from "styled-components";
+import AppFieldBox from "../../component/Base/AppFieldBox";
+import {AppTable} from "src/component/common";
+import {GridColDef, GridValueGetterParams} from "@mui/x-data-grid";
+
+const columns: GridColDef[] = [
+    {field: 'id', headerName: 'ID', width: 90},
+    {
+        field: 'firstName',
+        headerName: 'First name',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'lastName',
+        headerName: 'Last name',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'age',
+        headerName: 'Age',
+        type: 'number',
+        width: 110,
+        editable: true,
+    },
+    {
+        field: 'fullName',
+        headerName: 'Full name',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 160,
+        valueGetter: (params: GridValueGetterParams) =>
+            `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    },
+];
+
+const rows = [
+    {id: 1, lastName: 'Snow', firstName: 'Jon', age: 35},
+    {id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42},
+    {id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45},
+    {id: 4, lastName: 'Stark', firstName: 'Arya', age: 16},
+    {id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null},
+    {id: 6, lastName: 'Melisandre', firstName: null, age: 150},
+    {id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44},
+    {id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36},
+    {id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65},
+    {id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65},
+    {id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65},
+    {id: 12, lastName: 'Roxie', firstName: 'Harvey', age: 65},
+];
 
 const Example = () => {
     const [radioValueSelected, setRadioValueSelected] = useState<any>(null);
@@ -36,6 +86,11 @@ const Example = () => {
         margin: '0 -1px -1px 0',
     }
 
+    const Abc = styled.div`
+      width: 100px;
+      height: 100px;
+      color: red;
+      text-align: center;`
 
     return (<>
         <AppBox p={3}>
@@ -464,12 +519,49 @@ const Example = () => {
                 <Divider>
                     Modal
                 </Divider>
-                <Button onClick={toggleModal}>Show/Hidden</Button>
+                <Box><Button onClick={toggleModal}>Show/Hidden</Button></Box>
                 <AppModal title={'Save'} open={openModal} onClose={() => toggleModal(false)} sx={{
-                    width: '200px'
+                    width: '60%'
                 }} bodyProps={{}}>
-                    <AppInput/>
+                    <Typography variant={'label'} fontWeight={'bold'}>Search Category</Typography>
+                    <AppFieldBox labelProps={{xs: 2}} title={<Typography
+                        variant="label"
+                        fontWeight="bold">
+                        Search detail
+                    </Typography>}>
+                        <Box m={'.5rem'} display={'flex'} gap={'.5rem'}>
+                            <AppInput fullWidth value={'Fruit/vegetable/salad'}/>
+                            <AppInput fullWidth/>
+                        </Box>
+                    </AppFieldBox>
+                    <Button sx={{
+                        position: 'relative',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        marginTop: '1rem',
+                    }}>Search</Button>
                 </AppModal>
+
+                {/*Field box*/}
+                <Divider>
+                    Field box
+                </Divider>
+                <Box>
+                    <AppFieldBox title={'abc'}>
+                        <AppInput/>
+                    </AppFieldBox>
+                    <AppFieldBox title={'abc'}>
+                        <AppInput/>
+                    </AppFieldBox>
+                </Box>
+
+                {/*Table*/}
+                <Divider>
+                    Table
+                </Divider>
+                <Box>
+                    <AppTable columns={columns} rows={rows}/>
+                </Box>
             </Stack>
         </AppBox>
     </>)

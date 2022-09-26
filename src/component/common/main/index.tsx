@@ -1,12 +1,11 @@
-import {Container} from "@mui/material";
-import {AppBox} from "../../Base";
+import {Box, Container} from "@mui/material";
 
 export function Main({children}: any) {
     return (
-        <AppBox color="gray10">
+        <Box>
             <Container sx={{padding: '0 1rem'}}>
                 {children}
             </Container>
-        </AppBox>
+        </Box>
     )
 }

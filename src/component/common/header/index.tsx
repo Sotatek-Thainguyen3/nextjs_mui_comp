@@ -1,6 +1,6 @@
 import {AppBar, Box, Container, Toolbar, useTheme} from "@mui/material";
-import {Link} from 'react-router-dom';
 import Logo from 'src/assets/images/moodle-vector-logo.svg';
+import Link from "next/link";
 
 export function Header() {
     const theme = useTheme();
@@ -23,15 +23,12 @@ export function Header() {
                         justifyContent: 'space-between',
                     }}
                 >
-                    <Link to="/">
-                        <img
-                            src={Logo}
-                            alt=""
-                            style={{
+                    <Link href="/">
+                        <a>
+                            <Logo style={{
                                 display: 'block',
-                                maxHeight: '50px',
-                            }}
-                        />
+                            }}/>
+                        </a>
                     </Link>
                 </Toolbar>
             </Container>
