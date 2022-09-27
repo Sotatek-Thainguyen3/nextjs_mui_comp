@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {DataGrid, DataGridProps} from '@mui/x-data-grid'
-import {Box, Chip, InputBase, MenuItem, Pagination, Select, styled, Typography} from "@mui/material";
+import {Box, Chip, InputBase, MenuItem, Pagination, PaginationItem, Select, styled, Typography} from "@mui/material";
 
 export interface IAppTable extends DataGridProps {
     height?: string | number,
@@ -64,43 +64,32 @@ export const AppPagination = ({
         '& .MuiInputBase-input': {
             borderRadius: 4,
             position: 'relative',
-            backgroundColor: theme.palette.background.paper,
-            border: '1px solid #ced4da',
+            // backgroundColor: theme.palette.background.paper,
+            // border: '1px solid #ced4da',
             fontSize: 16,
             padding: '10px 26px 10px 12px',
             transition: theme.transitions.create(['border-color', 'box-shadow']),
             // Use the system font instead of the default Roboto font.
-            fontFamily: [
-                '-apple-system',
-                'BlinkMacSystemFont',
-                '"Segoe UI"',
-                'Roboto',
-                '"Helvetica Neue"',
-                'Arial',
-                'sans-serif',
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-            ].join(','),
             '&:focus': {
-                borderRadius: 4,
-                borderColor: '#80bdff',
-                boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+                // borderRadius: 4,
+                // borderColor: '#80bdff',
+                // boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+                backgroundColor: 'unset'
             },
         },
     }));
-
     return (
         <>
             <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
-                // value={pageSize}
+                value={pageSize}
                 variant={'standard'}
+                input={<BootstrapInput/>}
                 onChange={(value) => onChangePageSize && onChangePageSize(value.target.value)}
                 renderValue={(selected: any) => (
                     <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 0.5}}>
-                        selected: {<Chip key={selected} label={selected}/>}
+                        View each {selected}
                     </Box>
                 )}
                 sx={{
@@ -118,6 +107,8 @@ export const AppPagination = ({
                 count={totalPages}
                 page={page + 1}
                 onChange={(event, value) => onChangePage && onChangePage(value - 1)}
+                showFirstButton={true}
+                showLastButton={true}
                 sx={{
                     position: 'absolute',
                     bottom: '.4rem',

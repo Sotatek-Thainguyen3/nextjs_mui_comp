@@ -573,14 +573,6 @@ const Example = () => {
                 <Box>
                     <AppTable columns={columns} rows={rows}/>
                 </Box>
-
-                {/*Table*/}
-                <Divider>
-                    Table
-                </Divider>
-                <Box>
-                    <AppTable columns={columns} rows={rows}/>
-                </Box>
             </Stack>
         </AppBox>
     </>)
