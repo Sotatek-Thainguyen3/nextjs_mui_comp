@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Box, FormControlLabel, Stack, Typography} from "@mui/material";
-import {AppBox, AppInput} from "../../component/Base";
-import {_addTodo} from "../../state";
+import {AppBox, AppInput} from "src/component/Base";
+import {_addTodo, wrapper} from "src/state";
+import Link from "next/link";
 
 const Todo = () => {
     const dispatch = useDispatch();
@@ -20,29 +21,35 @@ const Todo = () => {
         }
     }
 
-    return (
-        <Box textAlign={'center'} mt={3}>
+    return (<>
             <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-                whiteSpace: 'nowrap',
-                justifyContent: 'center'
-            }}>
-                <Typography>Todo name:</Typography>
-                <AppInput sx={{
-                    width: '50%'
-                }} onKeyDown={handleAddTodo}/>
+                padding: '.5rem'
+            }}><Link href={'/example'}>
+                <a>Back to home</a>
+            </Link></Box>
+            <Box textAlign={'center'} mt={3}>
+                <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    whiteSpace: 'nowrap',
+                    justifyContent: 'center'
+                }}>
+                    <Typography>Todo name:</Typography>
+                    <AppInput sx={{
+                        width: '50%'
+                    }} onKeyDown={handleAddTodo}/>
+                </Box>
+                <Stack spacing={2}>
+                    {
+                        todo?.list.map((item: string) => {
+                            return (
+                                <Box key={item}>{item}</Box>
+                            )
+                        })
+                    }
+                </Stack>
             </Box>
-            <Stack spacing={2}>
-                {
-                    todo?.list.map((item: string) => {
-                        return (
-                            <Box key={item}>{item}</Box>
-                        )
-                    })
-                }
-            </Stack>
-        </Box>
+        </>
     );
 };
 

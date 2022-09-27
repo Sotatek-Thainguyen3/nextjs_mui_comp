@@ -25,8 +25,8 @@ const Home: NextPage = (props: any) => {
                     <span>{resolvedUrl}</span>
                 </h1>
                 <h2>Select: {todo.title}</h2>
-                <Link href={'/demo'}>
-                    <h3>Navigate to: demo</h3>
+                <Link href={'/'}>
+                    <h3>Navigate to: index</h3>
                 </Link>
             </main>
 
@@ -48,7 +48,7 @@ const Home: NextPage = (props: any) => {
 
 export const getServerSideProps = wrapper.getStaticProps(
     (store) => async ({resolvedUrl}: any) => {
-        store.dispatch(_setTitle('name1'));
+        // store.dispatch(_setTitle('name1'));
         return {
             props: {
                 resolvedUrl

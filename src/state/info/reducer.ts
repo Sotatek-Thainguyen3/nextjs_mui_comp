@@ -8,14 +8,14 @@ const initialState = {
     status: false
 }
 
-export const fetchInfo: any = createAsyncThunk('info/fetchInfo', async () => {
+export const fetchInfo = createAsyncThunk('info/fetchInfo', async () => {
     const response = await axios.get<any>("https://jsonplaceholder.typicode.com/users");
-    return response.data;
+    return response.data
 })
 
 const infoReducer = createSlice({
     name: 'info',
-    initialState,
+    initialState: initialState,
     reducers: {
         _increaseCount: (state) => {
             state.count = state.count + 1;
@@ -23,16 +23,15 @@ const infoReducer = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchInfo.pending, (state, action) => {
-            state.status = true;
+            state.status = true
         });
         builder.addCase(fetchInfo.fulfilled, (state, action) => {
             console.log(action.payload);
             state.list = action.payload;
         })
     }
-});
+})
 
 const {reducer, actions} = infoReducer;
-
 export const {_increaseCount} = actions;
 export default reducer;

@@ -2,13 +2,14 @@ import '../../styles/globals.css'
 import type {AppProps} from 'next/app'
 import Head from "next/head";
 import {ThemeProvider} from "@mui/material";
-import {theme} from "../utils/theme";
-import store from "../state/store";
+import {theme} from "src/utils/theme";
+import {Header} from "src/component/common/header";
+import {Main} from "src/component/common/main";
+import {wrapper} from "src/state/store";
 import {Provider} from "react-redux";
-import {Header} from "../component/common/header";
-import {Main} from "../component/common/main";
 
 function MyApp({Component, pageProps}: AppProps) {
+    const {store, props} = wrapper.useWrappedStore(pageProps);
     return (<>
         <Head>
             <title>My page</title>
@@ -25,4 +26,4 @@ function MyApp({Component, pageProps}: AppProps) {
     </>)
 }
 
-export default MyApp
+export default MyApp;

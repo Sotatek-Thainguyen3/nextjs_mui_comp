@@ -20,6 +20,7 @@ import styled from "styled-components";
 import AppFieldBox from "../../component/Base/AppFieldBox";
 import {AppTable} from "src/component/common";
 import {GridColDef, GridValueGetterParams} from "@mui/x-data-grid";
+import Link from "next/link";
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -95,6 +96,16 @@ const Example = () => {
     return (<>
         <AppBox p={3}>
             <Stack spacing={3}>
+                {/*Navigate*/}
+                <Divider>
+                    Navigate link
+                </Divider>
+                <Typography>
+                    <Link href={'/todo'}>
+                        <a>Goto todo list</a>
+                    </Link>
+                </Typography>
+
                 {/*Typography*/}
                 <Divider>Typography</Divider>
                 <Grid container>
@@ -553,6 +564,14 @@ const Example = () => {
                     <AppFieldBox title={'abc'}>
                         <AppInput/>
                     </AppFieldBox>
+                </Box>
+
+                {/*Table*/}
+                <Divider>
+                    Table
+                </Divider>
+                <Box>
+                    <AppTable columns={columns} rows={rows}/>
                 </Box>
 
                 {/*Table*/}

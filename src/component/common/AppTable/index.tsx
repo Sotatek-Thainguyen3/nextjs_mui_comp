@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {DataGrid, DataGridProps} from '@mui/x-data-grid'
-import {Box, MenuItem, Pagination, Select} from "@mui/material";
+import {Box, Chip, InputBase, MenuItem, Pagination, Select, styled, Typography} from "@mui/material";
 
 export interface IAppTable extends DataGridProps {
     height?: string | number,
@@ -57,15 +57,52 @@ export const AppPagination = ({
                                   onChangePageSize,
                                   pageOptions
                               }: IAppPagination) => {
+    const BootstrapInput = styled(InputBase)(({theme}) => ({
+        'label + &': {
+            marginTop: theme.spacing(3),
+        },
+        '& .MuiInputBase-input': {
+            borderRadius: 4,
+            position: 'relative',
+            backgroundColor: theme.palette.background.paper,
+            border: '1px solid #ced4da',
+            fontSize: 16,
+            padding: '10px 26px 10px 12px',
+            transition: theme.transitions.create(['border-color', 'box-shadow']),
+            // Use the system font instead of the default Roboto font.
+            fontFamily: [
+                '-apple-system',
+                'BlinkMacSystemFont',
+                '"Segoe UI"',
+                'Roboto',
+                '"Helvetica Neue"',
+                'Arial',
+                'sans-serif',
+                '"Apple Color Emoji"',
+                '"Segoe UI Emoji"',
+                '"Segoe UI Symbol"',
+            ].join(','),
+            '&:focus': {
+                borderRadius: 4,
+                borderColor: '#80bdff',
+                boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+            },
+        },
+    }));
+
     return (
         <>
             <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={pageSize}
-                label="Age"
+                // value={pageSize}
                 variant={'standard'}
                 onChange={(value) => onChangePageSize && onChangePageSize(value.target.value)}
+                renderValue={(selected: any) => (
+                    <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 0.5}}>
+                        selected: {<Chip key={selected} label={selected}/>}
+                    </Box>
+                )}
                 sx={{
                     position: 'absolute',
                     right: '1rem',
