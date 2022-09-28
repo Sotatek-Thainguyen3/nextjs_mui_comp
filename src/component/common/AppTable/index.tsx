@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {DataGrid, DataGridProps} from '@mui/x-data-grid'
 import {Box, Chip, InputBase, MenuItem, Pagination, PaginationItem, Select, styled, Typography} from "@mui/material";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export interface IAppTable extends DataGridProps {
     height?: string | number,

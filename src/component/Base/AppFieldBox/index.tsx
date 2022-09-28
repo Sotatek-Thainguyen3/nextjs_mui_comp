@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormControlLabel, Grid, Radio, RadioGroup, Typography} from "@mui/material";
+import {Grid} from "@mui/material";
 import {GridProps} from "@mui/material/Grid/Grid";
 
 export interface IAppFieldBox {
@@ -10,17 +10,13 @@ export interface IAppFieldBox {
     valueProps?: GridProps
 }
 
-const AppFieldBox = ({title, children, containerProps, labelProps, valueProps}: IAppFieldBox) => {
+export const AppFieldBox = ({title, children, containerProps, labelProps, valueProps}: IAppFieldBox) => {
     const {sx: sxContainer, ...containerProp} = containerProps || {};
     const {sx: sxLabel, ...labelProp} = labelProps || {};
     const {sx: sxValue, ...valueProp} = valueProps || {};
 
     return (
         <Grid container sx={{
-            '& .MuiGrid-item': {
-                border: '1px solid #a6a6a6',
-                margin: '0 -1px -1px 0',
-            },
             ...sxContainer
         }} {...containerProp}>
             <Grid item xs={2} sx={{
@@ -30,11 +26,17 @@ const AppFieldBox = ({title, children, containerProps, labelProps, valueProps}: 
                 justifyContent: 'center',
                 textAlign: 'center',
                 padding: '0 .5rem',
+
+                border: '1px solid #a6a6a6',
+                margin: '0 -1px -1px 0',
                 ...sxLabel
             }} {...labelProp}>
                 {title}
             </Grid>
             <Grid item xs sx={{
+                border: '1px solid #a6a6a6',
+                margin: '0 -1px -1px 0',
+
                 ...sxValue
             }} {...valueProp}>
                 {children}
@@ -42,5 +44,3 @@ const AppFieldBox = ({title, children, containerProps, labelProps, valueProps}: 
         </Grid>
     );
 };
-
-export default AppFieldBox;

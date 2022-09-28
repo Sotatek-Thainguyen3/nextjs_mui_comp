@@ -2,25 +2,29 @@ import {
     Box,
     Button,
     Checkbox,
-    Divider,
+    Divider, FormControl,
     FormControlLabel,
-    Grid,
+    Grid, InputLabel, MenuItem,
     Radio,
     RadioGroup,
+    Select,
     Stack,
     Typography
 } from "@mui/material";
-import {AppBox, AppDateRangePicker, AppInput} from "../../component/Base";
+import {AppBox, AppDateRangePicker, AppInput, SelectOption} from "src/component/Base";
 import IconDelete from 'src/assets/icons/close.svg';
 import {TypeTypography} from "../../utils/theme";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import AppModal from "../../component/Base/AppModal";
 import {useToggle} from "../../hooks/useToggle";
 import styled from "styled-components";
-import AppFieldBox from "../../component/Base/AppFieldBox";
+import {AppFieldBox, AppSelect} from "src/component/Base";
 import {AppTable} from "src/component/common";
 import {GridColDef, GridValueGetterParams} from "@mui/x-data-grid";
 import Link from "next/link";
+
+import IconLoading from 'src/assets/icons/loading.svg';
+import LinearProgress from "@mui/material/LinearProgress";
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -74,6 +78,16 @@ const Example = () => {
     const [checked, setChecked] = useState({all: true, a: false, b: false, c: false});
     const [fileUpload, setFileUpload] = useState<any>();
     const [openModal, toggleModal] = useToggle();
+    const [list, setList] = useState<{ result: any[], loading: boolean }>({result: [], loading: true});
+
+    // For select option
+    const [option, setOption] = useState('id');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setList({result: rows, loading: false});
+        }, 2000)
+    }, [])
 
     const styleFlexCenter = {
         display: 'flex',
@@ -446,22 +460,12 @@ const Example = () => {
                 <Divider>
                     Form
                 </Divider>
-                <Grid container>
-                    <Grid item xs={2} sx={{
-                        backgroundColor: '#d1d1d1',
-                        ...styleCell,
-                        ...styleFlexCenter
-                    }}>
-                        <Typography
-                            variant="label"
-                            fontWeight="bold">
-                            Connection type
-                        </Typography>
-
-                    </Grid>
-                    <Grid item xs={10} sx={{
-                        ...styleCell
-                    }}>
+                <Box>
+                    <AppFieldBox title={<Typography
+                        variant="label"
+                        fontWeight="bold">
+                        Connection type
+                    </Typography>}>
                         <RadioGroup
                             aria-labelledby="demo-controlled-radio-buttons-group"
                             name="controlled-radio-buttons-group"
@@ -476,23 +480,13 @@ const Example = () => {
                             <FormControlLabel value="a" control={<Radio/>} label="Catalogyo main Category"/>
                             <FormControlLabel value="b" control={<Radio/>} label="Product"/>
                         </RadioGroup>
-                    </Grid>
+                    </AppFieldBox>
 
-                    {/*Row2*/}
-                    <Grid item xs={2} sx={{
-                        backgroundColor: '#d1d1d1',
-                        ...styleCell,
-                        ...styleFlexCenter
-                    }}>
-                        <Typography
-                            variant="label"
-                            fontWeight="bold">
-                            Connection category
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={10} sx={{
-                        ...styleCell,
-                    }}>
+                    <AppFieldBox title={<Typography
+                        variant="label"
+                        fontWeight="bold">
+                        Connection category
+                    </Typography>}>
                         <Grid container padding={'0.5rem 0.5rem 0.5rem 1rem'} columnSpacing={2}>
                             <Grid item xs>
                                 <AppInput fullWidth disabled/>
@@ -504,27 +498,17 @@ const Example = () => {
                                 <Button>Search</Button>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </AppFieldBox>
 
-                    {/*Row3*/}
-                    <Grid item xs={2} sx={{
-                        backgroundColor: '#d1d1d1',
-                        ...styleCell,
-                        ...styleFlexCenter
-                    }}>
-                        <Typography
-                            variant="label"
-                            fontWeight="bold">
-                            Composition of exhibition products
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={10} sx={{
-                        ...styleCell,
-                    }}>
+                    <AppFieldBox title={<Typography
+                        variant="label"
+                        fontWeight="bold">
+                        Composition of exhibition products
+                    </Typography>}>
                         <Box sx={{height: 400, width: '100%'}}>
                         </Box>
-                    </Grid>
-                </Grid>
+                    </AppFieldBox>
+                </Box>
 
                 {/*Modal*/}
                 <Divider>
@@ -571,7 +555,42 @@ const Example = () => {
                     Table
                 </Divider>
                 <Box>
-                    <AppTable columns={columns} rows={rows}/>
+                    <AppTable columns={columns} rows={list.result} components={{
+                        LoadingOverlay: LinearProgress,
+                        NoRowsOverlay: () => <Typography sx={{
+                            textAlign: 'center',
+                            position: 'relative',
+                            top: '50%',
+                            transform: 'translateY(-50%)'
+                        }}>There are no products that displayed.
+                        </Typography>
+                    }} loading={list.loading}/>
+                </Box>
+
+                {/*AppSelect*/}
+                <Divider>
+                    Select
+                </Divider>
+                <Box><FormControl>
+                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={10}
+                        label="Age"
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
+                    <AppSelect value={option} sx={{
+                        width: '30%'
+                    }} onChange={(e, value) => setOption(value)}>
+                        <SelectOption value={'id'}>ID</SelectOption>
+                        <SelectOption value={'franchise_id'}>Franchise ID</SelectOption>
+                        <SelectOption value={'policy_name'}>Policy name</SelectOption>
+                    </AppSelect>
                 </Box>
             </Stack>
         </AppBox>
