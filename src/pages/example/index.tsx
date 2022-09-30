@@ -79,7 +79,8 @@ const Example = () => {
     const [fileUpload, setFileUpload] = useState<any>();
     const [openModal, toggleModal] = useToggle();
     const [list, setList] = useState<{ result: any[], loading: boolean }>({result: [], loading: true});
-
+    const [objList, setObjList] = useState<any[]>([]);
+    const [numConfig, setNumConfig] = useState('');
     // For select option
     const [option, setOption] = useState('id');
 
@@ -88,6 +89,25 @@ const Example = () => {
             setList({result: rows, loading: false});
         }, 2000)
     }, [])
+
+    const handleAddConfig = (num: any) => {
+        if (objList.length > num) {
+            setObjList(prevState => [...prevState.slice(0, num)])
+        } else {
+            const arrayNew = new Array(num - objList.length)
+                .fill({name: ''})
+                .map(item => ({...item}));
+            setObjList((prevState) => [...prevState, ...arrayNew])
+        }
+    }
+
+    const handleSetForm = (index: number, e: any) => {
+        setObjList(prevState => {
+            const objChnage = prevState;
+            objChnage[index].name = e.target.value
+            return [...objChnage];
+        })
+    }
 
     const styleFlexCenter = {
         display: 'flex',
@@ -555,7 +575,7 @@ const Example = () => {
                     Table
                 </Divider>
                 <Box>
-                    <AppTable columns={columns} rows={list.result} components={{
+                    <AppTable columns={columns} rows={list.result} checkboxSelection components={{
                         LoadingOverlay: LinearProgress,
                         NoRowsOverlay: () => <Typography sx={{
                             textAlign: 'center',
@@ -591,6 +611,29 @@ const Example = () => {
                         <SelectOption value={'franchise_id'}>Franchise ID</SelectOption>
                         <SelectOption value={'policy_name'}>Policy name</SelectOption>
                     </AppSelect>
+                </Box>
+
+                {/*Form initial by number*/}
+                <Divider>
+                    Form initial by number
+                </Divider>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row'
+                }}>
+                    <AppInput value={numConfig} onChange={(e) => setNumConfig(e.target.value)}/><Button sx={{
+                    textAlign: 'center',
+                    textTransform: 'unset'
+                }} onClick={() => handleAddConfig(numConfig)}><Typography variant={'caption'}>Add configuration
+                    item</Typography></Button>
+                </Box>
+                <Box>
+                    {objList && objList.map((item, index) => {
+                        const name = objList[index].name;
+                        return (<Box key={index}>
+                            <AppInput value={name} onChange={(e) => handleSetForm(index, e)}/>
+                        </Box>)
+                    })}
                 </Box>
             </Stack>
         </AppBox>

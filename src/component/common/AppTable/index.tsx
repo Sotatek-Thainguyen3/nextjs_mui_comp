@@ -17,11 +17,11 @@ export const AppTable = ({rows, columns, pageOptions = [5, 10, 25], height = 370
             <DataGrid
                 rows={rows}
                 columns={columns}
-                checkboxSelection
                 experimentalFeatures={{newEditingApi: true}}
                 page={page}
                 pageSize={pageSizeRef}
-                hideFooterPagination={true}
+                hideFooterPagination
+                disableSelectionOnClick
                 sx={{
                     '& .MuiDataGrid-columnHeader .MuiDataGrid-menuIcon': {
                         display: 'none'
