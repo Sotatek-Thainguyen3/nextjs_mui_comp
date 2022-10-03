@@ -29,24 +29,32 @@ import {useFieldArray, useForm} from "react-hook-form";
 import {number} from "prop-types";
 
 const columns: GridColDef[] = [
-    {field: 'id', headerName: 'ID', width: 90},
+    {
+        field: 'id',
+        headerName: 'ID',
+        minWidth: 90,
+        flex: 0.3
+    },
     {
         field: 'firstName',
         headerName: 'First name',
-        width: 150,
+        minWidth: 150,
+        flex: 1,
         editable: true,
     },
     {
         field: 'lastName',
         headerName: 'Last name',
-        width: 150,
+        minWidth: 150,
+        flex: 1,
         editable: true,
     },
     {
         field: 'age',
         headerName: 'Age',
-        type: 'number',
-        width: 110,
+        type: 'string',
+        minWidth: 110,
+        flex: 1,
         editable: true,
     },
     {
@@ -54,7 +62,8 @@ const columns: GridColDef[] = [
         headerName: 'Full name',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 160,
+        minWidth: 160,
+        flex: 1,
         valueGetter: (params: GridValueGetterParams) =>
             `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
@@ -689,6 +698,14 @@ const Example = () => {
                         </BoxFlexCenterSpace1>
                     )
                 })}
+
+                {/*Datepicker*/}
+                <Divider>
+                    Datepicker
+                </Divider>
+                <AppInput type={'date'} mask="99/99/9999" sx={{
+                    width: '30%'
+                }}/>
             </Stack>
         </AppBox>
     </>)
