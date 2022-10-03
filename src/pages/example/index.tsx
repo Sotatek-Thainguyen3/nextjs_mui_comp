@@ -127,6 +127,8 @@ const Example = () => {
       color: red;
       text-align: center;`
 
+    const a = 'text';
+
     return (<>
         <AppBox p={3}>
             <Stack spacing={3}>
