@@ -25,6 +25,8 @@ import Link from "next/link";
 
 import IconLoading from 'src/assets/icons/loading.svg';
 import LinearProgress from "@mui/material/LinearProgress";
+import {useFieldArray, useForm} from "react-hook-form";
+import {number} from "prop-types";
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -79,17 +81,10 @@ const Example = () => {
     const [fileUpload, setFileUpload] = useState<any>();
     const [openModal, toggleModal] = useToggle();
     const [list, setList] = useState<{ result: any[], loading: boolean }>({result: [], loading: true});
+
+    // For form array (reactjs + state)
     const [objList, setObjList] = useState<any[]>([]);
     const [numConfig, setNumConfig] = useState('');
-    // For select option
-    const [option, setOption] = useState('id');
-
-    useEffect(() => {
-        setTimeout(() => {
-            setList({result: rows, loading: false});
-        }, 2000)
-    }, [])
-
     const handleAddConfig = (num: any) => {
         if (objList.length > num) {
             setObjList(prevState => [...prevState.slice(0, num)])
@@ -100,7 +95,6 @@ const Example = () => {
             setObjList((prevState) => [...prevState, ...arrayNew])
         }
     }
-
     const handleSetForm = (index: number, e: any) => {
         setObjList(prevState => {
             const objChnage = prevState;
@@ -109,6 +103,39 @@ const Example = () => {
         })
     }
 
+    // For form array (state + react hook form)
+    const [aquaConfig, setAquaConfig] = useState<any>(null);
+    const {control, register, getValues} = useForm();
+    const {fields, append, prepend, remove, swap, insert} = useFieldArray({
+        control,
+        name: 'addConfig'
+    })
+
+    const handleAppend = (num: any) => {
+        if (!num || Number.isNaN(+num)) return;
+        if (fields.length > num) {
+            const listRemove = new Array((fields.length) - num)
+                .fill(0)
+                .map((item, i) => (i + (+num))) as number[];
+            remove(listRemove);
+        } else {
+            const arrayNew = new Array(num - fields.length)
+                .fill({name: ''})
+                .map(item => ({...item}));
+            append(arrayNew);
+        }
+    }
+
+    // For select option
+    const [option, setOption] = useState('id');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setList({result: rows, loading: false});
+        }, 2000)
+    }, [])
+
+    // For style
     const styleFlexCenter = {
         display: 'flex',
         alignItems: 'center',
@@ -126,6 +153,12 @@ const Example = () => {
       height: 100px;
       color: red;
       text-align: center;`
+
+    const BoxFlexCenterSpace1 = styled('div')({
+        display: 'flex',
+        gap: '1rem',
+        alignItems: 'center'
+    })
 
     return (<>
         <AppBox p={3}>
@@ -613,9 +646,9 @@ const Example = () => {
                     </AppSelect>
                 </Box>
 
-                {/*Form initial by number*/}
+                {/*Form initial by number (reactjs + state)*/}
                 <Divider>
-                    Form initial by number
+                    Form initial by number (reactjs + state)
                 </Divider>
                 <Box sx={{
                     display: 'flex',
@@ -627,14 +660,35 @@ const Example = () => {
                 }} onClick={() => handleAddConfig(numConfig)}><Typography variant={'caption'}>Add configuration
                     item</Typography></Button>
                 </Box>
-                <Box>
+                <Box sx={{
+                    display: 'flex',
+                    gap: '1rem'
+                }}>
                     {objList && objList.map((item, index) => {
                         const name = objList[index].name;
-                        return (<Box key={index}>
-                            <AppInput value={name} onChange={(e) => handleSetForm(index, e)}/>
-                        </Box>)
+                        return (
+                            <AppInput key={index} value={name} onChange={(e) => handleSetForm(index, e)}/>)
                     })}
                 </Box>
+
+                {/*Form initial by number (state + state + react hook form)*/}
+                <Divider>
+                    Form initial by number (state + react hook form)
+                </Divider>
+                <Box sx={{
+                    display: 'flex',
+                    gap: '1rem'
+                }}><AppInput value={aquaConfig} onChange={(e) => setAquaConfig(e.target.value)}/>
+                    <Button onClick={() => handleAppend(aquaConfig)}>Add Config</Button>
+                </Box>
+                {fields.map((field, index) => {
+                    return (
+                        <BoxFlexCenterSpace1 key={field.id}>
+                            <Typography variant={'label'}>Name:</Typography>
+                            <AppInput fullWidth {...register(`addConfig.${index}.name`)}/>
+                        </BoxFlexCenterSpace1>
+                    )
+                })}
             </Stack>
         </AppBox>
     </>)
