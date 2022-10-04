@@ -169,6 +169,8 @@ const Example = () => {
         alignItems: 'center'
     })
 
+    const a;
+
     return (<>
         <AppBox p={3}>
             <Stack spacing={3}>
