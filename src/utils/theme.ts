@@ -132,279 +132,279 @@ const themeOptions: ThemeOptionsOld = {
             xl: 1536,
         },
     },
+    // //
+    // palette: {
+    //     primary: {
+    //         main: themeCustoms.color.main,
+    //     },
+    //     secondary: {
+    //         main: themeCustoms.color.main,
+    //     },
+    //     info: {
+    //         main: themeCustoms.color.notification,
+    //     },
+    //     error: {
+    //         main: themeCustoms.color.error,
+    //     },
+    //     warning: {
+    //         main: themeCustoms.color.warning,
+    //     },
+    //     success: {
+    //         main: themeCustoms.color.success,
+    //     },
+    // },
+    // //
+    // components: {
+    //     MuiList: {
+    //         styleOverrides: {
+    //             root: {
+    //                 background: themeCustoms.color.bg,
+    //             },
+    //         },
+    //     },
+    //     MuiLink: {
+    //         styleOverrides: {
+    //             root: {
+    //                 color: themeCustoms.color.notification,
+    //                 textDecorationColor: themeCustoms.color.notification,
+    //             },
+    //         },
+    //     },
+    //     MuiCssBaseline: {
+    //         styleOverrides: {
+    //             // body: {
+    //             //   fontSize: '14px',
+    //             //   lineHeight: LINE_HEIGHT,
+    //             //   padding: 0,
+    //             //   margin: 0,
+    //             //   '& .MuiFormControlLabel-label.MuiTypography-root': {
+    //             //     fontSize: '14px',
+    //             //   },
+    //             // },
+    //             // a: {
+    //             //   color: 'inherit',
+    //             //   textDecoration: 'none',
+    //             // },
+    //             // '*': {
+    //             //   boxSizing: 'border-box',
+    //             // },
+    //         },
+    //     },
+    //     MuiContainer: {
+    //         defaultProps: {
+    //             // fixed: false,
+    //             disableGutters: true,
+    //             maxWidth: 'lg',
+    //         },
+    //         styleOverrides: {
+    //             fixed: {
+    //                 maxWidth: 'auto',
+    //             },
+    //             root: {
+    //                 // maxWidth: '1120px!important',
+    //                 // maxWidth: '1176px!important',
+    //                 // padding: '0 !important',
+    //                 // '@media (min-width: 900px)': {
+    //                 //   maxWidth: '600px',
+    //                 // },
+    //                 // '@media (min-width: 1200px)': {
+    //                 //   maxWidth: '900px',
+    //                 // },
+    //                 // '@media (min-width: 1536px)': {
+    //                 //   maxWidth: '1200px',
+    //                 // },
+    //             },
+    //         },
+    //     },
     //
-    palette: {
-        primary: {
-            main: themeCustoms.color.main,
-        },
-        secondary: {
-            main: themeCustoms.color.main,
-        },
-        info: {
-            main: themeCustoms.color.notification,
-        },
-        error: {
-            main: themeCustoms.color.error,
-        },
-        warning: {
-            main: themeCustoms.color.warning,
-        },
-        success: {
-            main: themeCustoms.color.success,
-        },
-    },
+    //     MuiButtonBase: {
+    //         styleOverrides: {
+    //             root: {
+    //                 // color: '#000!important',
+    //                 '&&&:hover': {
+    //                     // backgroundColor: 'transparent',
+    //                 },
     //
-    components: {
-        MuiList: {
-            styleOverrides: {
-                root: {
-                    background: themeCustoms.color.bg,
-                },
-            },
-        },
-        MuiLink: {
-            styleOverrides: {
-                root: {
-                    color: themeCustoms.color.notification,
-                    textDecorationColor: themeCustoms.color.notification,
-                },
-            },
-        },
-        MuiCssBaseline: {
-            styleOverrides: {
-                // body: {
-                //   fontSize: '14px',
-                //   lineHeight: LINE_HEIGHT,
-                //   padding: 0,
-                //   margin: 0,
-                //   '& .MuiFormControlLabel-label.MuiTypography-root': {
-                //     fontSize: '14px',
-                //   },
-                // },
-                // a: {
-                //   color: 'inherit',
-                //   textDecoration: 'none',
-                // },
-                // '*': {
-                //   boxSizing: 'border-box',
-                // },
-            },
-        },
-        MuiContainer: {
-            defaultProps: {
-                // fixed: false,
-                disableGutters: true,
-                maxWidth: 'lg',
-            },
-            styleOverrides: {
-                fixed: {
-                    maxWidth: 'auto',
-                },
-                root: {
-                    // maxWidth: '1120px!important',
-                    // maxWidth: '1176px!important',
-                    // padding: '0 !important',
-                    // '@media (min-width: 900px)': {
-                    //   maxWidth: '600px',
-                    // },
-                    // '@media (min-width: 1200px)': {
-                    //   maxWidth: '900px',
-                    // },
-                    // '@media (min-width: 1536px)': {
-                    //   maxWidth: '1200px',
-                    // },
-                },
-            },
-        },
-
-        MuiButtonBase: {
-            styleOverrides: {
-                root: {
-                    // color: '#000!important',
-                    '&&&:hover': {
-                        // backgroundColor: 'transparent',
-                    },
-
-                    '&.Mui-disabled': {
-                        color: '#B1B5C3',
-                    },
-                },
-            },
-        },
-
-        MuiSkeleton: {
-            defaultProps: {
-                animation: 'wave',
-            },
-
-            styleOverrides: {
-                wave: {
-                    '&::after': {
-                        animation: 'animation-wiooy9 1s linear 0s infinite',
-                    },
-                },
-            },
-        },
-
-        MuiCheckbox: {
-            styleOverrides: {
-                root: {
-                    color: themeCustoms.color.main,
-                    '&&&:hover': {
-                        background: 'none',
-                    },
-                    '&.Mui-checked': {
-                        color: themeCustoms.color.main,
-                    },
-                },
-            },
-        },
-
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#E6E8EC',
-                    },
-                    '&:hover': {
-                        '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#E6E8EC',
-                        },
-                    },
-
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#E6E8EC',
-                        borderWidth: 1,
-                    },
-                },
-            },
-        },
-
-        MuiInputBase: {
-            styleOverrides: {
-                adornedStart: {},
-                root: {
-                    // '&:before': {
-                    //   border: 'none !important',
-                    // },
-                    // '&:after': {
-                    //   border: 'none !important',
-                    // },
-                },
-            },
-        },
-
-        MuiAppBar: {
-            styleOverrides: {
-                root: {
-                    background: '#fff',
-                    color: themeCustoms.color.bg2,
-                    boxShadow: 'none',
-                    borderBottom: '1px solid',
-                    borderColor: themeCustoms.color.gray20,
-                    marginTop: '0px',
-                },
-            },
-        },
-
-        MuiTabs: {
-            styleOverrides: {
-                indicator: {
-                    // backgroundColor: themeColors.color.main,
-                },
-            },
-        },
-
-        MuiTab: {
-            // styleOverrides: {
-            //   root: {
-            //     padding: 27,
-            //     textTransform: 'unset',
-            //     backgroundColor: '#fff',
-            //     '&.Mui-selected': {
-            //       color: '#1652f0',
-            //     },
-            //   },
-            // },
-        },
-
-        MuiPaper: {
-            styleOverrides: {
-                root: {
-                    '& .MuiMenuItem-root': {
-                        // color: themeColors.color.text6,
-                        padding: '11px 16px',
-                        fontWeight: 500,
-                        '&:hover': {
-                            // backgroundColor: `${themeColors.color.hover} !important`,
-                        },
-                        '&.Mui-selected': {
-                            // backgroundColor: themeColors.color.hover,
-                        },
-                    },
-                },
-                rounded: {
-                    marginTop: '10px',
-                    borderRadius: '12px',
-                    boxShadow: themeCustoms.color.boxShadow,
-                },
-            },
-        },
-
-        MuiMenuItem: {
-            styleOverrides: {
-                root: {
-                    fontSize: 14,
-                },
-            },
-        },
-
-        MuiToolbar: {
-            styleOverrides: {
-                root: {
-                    minHeight: '72px !important',
-
-                    '@media (min-width: 900px)': {
-                        minHeight: '70px !important',
-                    },
-                },
-            },
-        },
-
-        MuiRadio: {
-            defaultProps: {
-                size: 'small',
-            },
-            styleOverrides: {
-                root: {
-                    color: themeCustoms.color.main,
-
-                    '&+.MuiFormControlLabel-label': {
-                        fontWeight: 500,
-                        color: themeCustoms.color.gray100,
-                    },
-                    '&.Mui-checked+.MuiFormControlLabel-label': {
-                        color: themeCustoms.color.main,
-                    },
-                },
-            },
-        },
-
-        MuiBadge: {
-            styleOverrides: {
-                dot: {
-                    minWidth: '16px',
-                    height: '16px',
-                    borderRadius: '50%',
-                },
-            },
-        },
-
-        // MuiTypography: {
-        //   styleOverrides: {
-        //   },
-        // },
-    },
+    //                 '&.Mui-disabled': {
+    //                     color: '#B1B5C3',
+    //                 },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiSkeleton: {
+    //         defaultProps: {
+    //             animation: 'wave',
+    //         },
+    //
+    //         styleOverrides: {
+    //             wave: {
+    //                 '&::after': {
+    //                     animation: 'animation-wiooy9 1s linear 0s infinite',
+    //                 },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiCheckbox: {
+    //         styleOverrides: {
+    //             root: {
+    //                 color: themeCustoms.color.main,
+    //                 '&&&:hover': {
+    //                     background: 'none',
+    //                 },
+    //                 '&.Mui-checked': {
+    //                     color: themeCustoms.color.main,
+    //                 },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiOutlinedInput: {
+    //         styleOverrides: {
+    //             root: {
+    //                 '& .MuiOutlinedInput-notchedOutline': {
+    //                     borderColor: '#E6E8EC',
+    //                 },
+    //                 '&:hover': {
+    //                     '& .MuiOutlinedInput-notchedOutline': {
+    //                         borderColor: '#E6E8EC',
+    //                     },
+    //                 },
+    //
+    //                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    //                     borderColor: '#E6E8EC',
+    //                     borderWidth: 1,
+    //                 },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiInputBase: {
+    //         styleOverrides: {
+    //             adornedStart: {},
+    //             root: {
+    //                 // '&:before': {
+    //                 //   border: 'none !important',
+    //                 // },
+    //                 // '&:after': {
+    //                 //   border: 'none !important',
+    //                 // },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiAppBar: {
+    //         styleOverrides: {
+    //             root: {
+    //                 background: '#fff',
+    //                 color: themeCustoms.color.bg2,
+    //                 boxShadow: 'none',
+    //                 borderBottom: '1px solid',
+    //                 borderColor: themeCustoms.color.gray20,
+    //                 marginTop: '0px',
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiTabs: {
+    //         styleOverrides: {
+    //             indicator: {
+    //                 // backgroundColor: themeColors.color.main,
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiTab: {
+    //         // styleOverrides: {
+    //         //   root: {
+    //         //     padding: 27,
+    //         //     textTransform: 'unset',
+    //         //     backgroundColor: '#fff',
+    //         //     '&.Mui-selected': {
+    //         //       color: '#1652f0',
+    //         //     },
+    //         //   },
+    //         // },
+    //     },
+    //
+    //     MuiPaper: {
+    //         styleOverrides: {
+    //             root: {
+    //                 '& .MuiMenuItem-root': {
+    //                     // color: themeColors.color.text6,
+    //                     padding: '11px 16px',
+    //                     fontWeight: 500,
+    //                     '&:hover': {
+    //                         // backgroundColor: `${themeColors.color.hover} !important`,
+    //                     },
+    //                     '&.Mui-selected': {
+    //                         // backgroundColor: themeColors.color.hover,
+    //                     },
+    //                 },
+    //             },
+    //             rounded: {
+    //                 marginTop: '10px',
+    //                 borderRadius: '12px',
+    //                 boxShadow: themeCustoms.color.boxShadow,
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiMenuItem: {
+    //         styleOverrides: {
+    //             root: {
+    //                 fontSize: 14,
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiToolbar: {
+    //         styleOverrides: {
+    //             root: {
+    //                 minHeight: '72px !important',
+    //
+    //                 '@media (min-width: 900px)': {
+    //                     minHeight: '70px !important',
+    //                 },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiRadio: {
+    //         defaultProps: {
+    //             size: 'small',
+    //         },
+    //         styleOverrides: {
+    //             root: {
+    //                 color: themeCustoms.color.main,
+    //
+    //                 '&+.MuiFormControlLabel-label': {
+    //                     fontWeight: 500,
+    //                     color: themeCustoms.color.gray100,
+    //                 },
+    //                 '&.Mui-checked+.MuiFormControlLabel-label': {
+    //                     color: themeCustoms.color.main,
+    //                 },
+    //             },
+    //         },
+    //     },
+    //
+    //     MuiBadge: {
+    //         styleOverrides: {
+    //             dot: {
+    //                 minWidth: '16px',
+    //                 height: '16px',
+    //                 borderRadius: '50%',
+    //             },
+    //         },
+    //     },
+    //
+    //     // MuiTypography: {
+    //     //   styleOverrides: {
+    //     //   },
+    //     // },
+    // },
 };
 
 // Update for Typescript

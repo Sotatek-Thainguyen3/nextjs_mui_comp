@@ -27,6 +27,7 @@ import IconLoading from 'src/assets/icons/loading.svg';
 import LinearProgress from "@mui/material/LinearProgress";
 import {useFieldArray, useForm} from "react-hook-form";
 import {number} from "prop-types";
+import {AppDatePicker} from "../../component/Base/AppDatePicker";
 
 const columns: GridColDef[] = [
     {
@@ -168,8 +169,6 @@ const Example = () => {
         gap: '1rem',
         alignItems: 'center'
     })
-
-    const a;
 
     return (<>
         <AppBox p={3}>
@@ -452,6 +451,12 @@ const Example = () => {
                     <FormControlLabel value="b" control={<Radio/>} label="Product"/>
                 </RadioGroup>
 
+                {/*Datepicker*/}
+                <Divider>
+                    Datepicker
+                </Divider>
+                <AppDatePicker/>
+
                 {/*Checkbox*/}
                 <Divider>
                     Checkbox
@@ -656,6 +661,18 @@ const Example = () => {
                         <SelectOption value={'policy_name'}>Policy name</SelectOption>
                     </AppSelect>
                 </Box>
+                <Typography variant={'label'}></Typography>
+
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Age"
+                    input={<AppInput/>}
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
 
                 {/*Form initial by number (reactjs + state)*/}
                 <Divider>
@@ -705,7 +722,7 @@ const Example = () => {
                 <Divider>
                     Datepicker
                 </Divider>
-                <AppInput type={'date'} mask="99/99/9999" sx={{
+                <AppInput type={'date'} sx={{
                     width: '30%'
                 }}/>
             </Stack>
