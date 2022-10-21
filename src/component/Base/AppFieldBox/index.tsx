@@ -1,46 +1,39 @@
 import React from 'react';
-import {Grid} from "@mui/material";
-import {GridProps} from "@mui/material/Grid/Grid";
+import {Box, BoxProps} from "@mui/material";
 
-export interface IAppFieldBox {
-    title: React.ReactElement | string,
-    children: any,
-    containerProps?: GridProps,
-    labelProps?: GridProps,
-    valueProps?: GridProps
+export interface IAppFieldBox extends BoxProps {
+    title: any,
+    labelProps?: BoxProps,
+    valueProps?: BoxProps,
 }
 
-export const AppFieldBox = ({title, children, containerProps, labelProps, valueProps}: IAppFieldBox) => {
-    const {sx: sxContainer, ...containerProp} = containerProps || {};
+export const AppFieldBox = ({title, children, labelProps, valueProps, sx, ...props}: IAppFieldBox) => {
     const {sx: sxLabel, ...labelProp} = labelProps || {};
     const {sx: sxValue, ...valueProp} = valueProps || {};
 
     return (
-        <Grid container sx={{
-            ...sxContainer
-        }} {...containerProp}>
-            <Grid item xs={2} sx={{
-                backgroundColor: '#f2f2f2',
+        <Box sx={{
+            display: 'flex',
+            borderTop: '1px solid #dcdcdc',
+            borderBottom: '1px solid #dcdcdc',
+            margin: '0 -1px -1px 0',
+            width: '100%',
+            ...sx
+        }} {...props}>
+            <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                padding: '0 .5rem',
-
-                border: '1px solid #C1C7D0',
-                margin: '0 -1px -1px 0',
-                ...sxLabel
-            }} {...labelProp}>
+                backgroundColor: '#ededed',
+                minWidth: 220,
+                padding: '0.5rem',
+            }}>
                 {title}
-            </Grid>
-            <Grid item xs sx={{
-                border: '1px solid #C1C7D0',
-                margin: '0 -1px -1px 0',
-
-                ...sxValue
-            }} {...valueProp}>
-                {children}
-            </Grid>
-        </Grid>
+            </Box>
+            <Box sx={{
+                padding: '0.5rem',
+                width: '100%',
+                flex: 1
+            }}>{children}</Box>
+        </Box>
     );
 };
