@@ -15,9 +15,10 @@ const Home = (props: any) => {
     // const todo = useSelector(selectTodo);
 
     return (
-        <StateProvider>
-            <User />
-        </StateProvider>
+        // <StateProvider>
+            // <User />
+        // </StateProvider>
+        <></>
     )
 }
 

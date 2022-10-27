@@ -1,8 +1,9 @@
 import { useContext } from "react";
+import Home from "src/component/home/Home";
 import { StateProvider, store } from "src/utils/store";
 import UserContext, { UserConsumer, UserProvider } from "src/utils/themeContext";
 
-const Home = () => {
+const WrapperHome = () => {
     return (
         <StateProvider>
             <Home />
@@ -10,4 +11,4 @@ const Home = () => {
         );
 }
 
-export default Home;
+export default WrapperHome;
