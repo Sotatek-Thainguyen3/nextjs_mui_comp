@@ -21,10 +21,9 @@ const Home: NextPage = (props: any) => {
             <main className={styles.main}>
                 <h1 className={styles.title}>
                     Welcome to <a href="https://nextjs.org">Next.js!</a>
-
                     <span>{resolvedUrl}</span>
                 </h1>
-                <h2>Select: {todo.title}</h2>
+                <h2>Select: {todo.title} to update</h2>
                 <Link href={'/demo'}>
                     <h3>Navigate to: demo</h3>
                 </Link>
