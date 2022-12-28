@@ -20,21 +20,21 @@ export const AppFieldBox = ({title, children, containerProps, labelProps, valueP
             ...sxContainer
         }} {...containerProp}>
             <Grid item xs={2} sx={{
-                backgroundColor: '#d1d1d1',
+                backgroundColor: '#f2f2f2',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textAlign: 'center',
                 padding: '0 .5rem',
 
-                border: '1px solid #a6a6a6',
+                border: '1px solid #C1C7D0',
                 margin: '0 -1px -1px 0',
                 ...sxLabel
             }} {...labelProp}>
                 {title}
             </Grid>
             <Grid item xs sx={{
-                border: '1px solid #a6a6a6',
+                border: '1px solid #C1C7D0',
                 margin: '0 -1px -1px 0',
 
                 ...sxValue

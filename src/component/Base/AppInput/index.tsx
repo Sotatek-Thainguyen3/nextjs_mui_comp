@@ -18,7 +18,7 @@ export const AppInput = React.forwardRef(function AppInput(
                 fullWidth={fullWidth}
                 sx={{
                     border: `2px solid ` + theme.color.gray10,
-                    // borderRadius: '12px',
+                    borderRadius: '4px',
                     transitionProperty: 'all',
                     transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                     transitionDuration: '0.2s',

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {DataGrid, DataGridProps} from '@mui/x-data-grid'
 import {Box, Chip, InputBase, MenuItem, Pagination, PaginationItem, Select, styled, Typography} from "@mui/material";
-import LinearProgress from "@mui/material/LinearProgress";
 
 export interface IAppTable extends DataGridProps {
     height?: string | number,
@@ -23,8 +22,16 @@ export const AppTable = ({rows, columns, pageOptions = [5, 10, 25], height = 370
                 hideFooterPagination
                 disableSelectionOnClick
                 sx={{
-                    '& .MuiDataGrid-columnHeader .MuiDataGrid-menuIcon': {
-                        display: 'none'
+                    '& .MuiDataGrid-columnHeaders': {
+                        backgroundColor: '#f2f2f2',
+                    },
+                    '& .MuiDataGrid-columnHeader': {
+                        '& .MuiDataGrid-menuIcon': {
+                            display: 'none'
+                        },
+                        '& .MuiDataGrid-columnSeparator': {
+                            display: 'none'
+                        },
                     },
                     ...sx
                 }}

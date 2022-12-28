@@ -25,26 +25,37 @@ import Link from "next/link";
 
 import IconLoading from 'src/assets/icons/loading.svg';
 import LinearProgress from "@mui/material/LinearProgress";
+import {useFieldArray, useForm} from "react-hook-form";
+import {number} from "prop-types";
+import {AppDatePicker} from "../../component/Base/AppDatePicker";
 
 const columns: GridColDef[] = [
-    {field: 'id', headerName: 'ID', width: 90},
+    {
+        field: 'id',
+        headerName: 'ID',
+        minWidth: 90,
+        flex: 0.3
+    },
     {
         field: 'firstName',
         headerName: 'First name',
-        width: 150,
+        minWidth: 150,
+        flex: 1,
         editable: true,
     },
     {
         field: 'lastName',
         headerName: 'Last name',
-        width: 150,
+        minWidth: 150,
+        flex: 1,
         editable: true,
     },
     {
         field: 'age',
         headerName: 'Age',
-        type: 'number',
-        width: 110,
+        type: 'string',
+        minWidth: 110,
+        flex: 1,
         editable: true,
     },
     {
@@ -52,7 +63,8 @@ const columns: GridColDef[] = [
         headerName: 'Full name',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 160,
+        minWidth: 160,
+        flex: 1,
         valueGetter: (params: GridValueGetterParams) =>
             `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
@@ -79,17 +91,10 @@ const Example = () => {
     const [fileUpload, setFileUpload] = useState<any>();
     const [openModal, toggleModal] = useToggle();
     const [list, setList] = useState<{ result: any[], loading: boolean }>({result: [], loading: true});
+
+    // For form array (reactjs + state)
     const [objList, setObjList] = useState<any[]>([]);
     const [numConfig, setNumConfig] = useState('');
-    // For select option
-    const [option, setOption] = useState('id');
-
-    useEffect(() => {
-        setTimeout(() => {
-            setList({result: rows, loading: false});
-        }, 2000)
-    }, [])
-
     const handleAddConfig = (num: any) => {
         if (objList.length > num) {
             setObjList(prevState => [...prevState.slice(0, num)])
@@ -100,7 +105,6 @@ const Example = () => {
             setObjList((prevState) => [...prevState, ...arrayNew])
         }
     }
-
     const handleSetForm = (index: number, e: any) => {
         setObjList(prevState => {
             const objChnage = prevState;
@@ -109,6 +113,39 @@ const Example = () => {
         })
     }
 
+    // For form array (state + react hook form)
+    const [aquaConfig, setAquaConfig] = useState<any>(null);
+    const {control, register, getValues} = useForm();
+    const {fields, append, prepend, remove, swap, insert} = useFieldArray({
+        control,
+        name: 'addConfig'
+    })
+
+    const handleAppend = (num: any) => {
+        if (!num || Number.isNaN(+num)) return;
+        if (fields.length > num) {
+            const listRemove = new Array((fields.length) - num)
+                .fill(0)
+                .map((item, i) => (i + (+num))) as number[];
+            remove(listRemove);
+        } else {
+            const arrayNew = new Array(num - fields.length)
+                .fill({name: ''})
+                .map(item => ({...item}));
+            append(arrayNew);
+        }
+    }
+
+    // For select option
+    const [option, setOption] = useState('id');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setList({result: rows, loading: false});
+        }, 2000)
+    }, [])
+
+    // For style
     const styleFlexCenter = {
         display: 'flex',
         alignItems: 'center',
@@ -127,7 +164,11 @@ const Example = () => {
       color: red;
       text-align: center;`
 
-    const a = 'text';
+    const BoxFlexCenterSpace1 = styled('div')({
+        display: 'flex',
+        gap: '1rem',
+        alignItems: 'center'
+    })
 
     return (<>
         <AppBox p={3}>
@@ -410,6 +451,12 @@ const Example = () => {
                     <FormControlLabel value="b" control={<Radio/>} label="Product"/>
                 </RadioGroup>
 
+                {/*Datepicker*/}
+                <Divider>
+                    Datepicker
+                </Divider>
+                <AppDatePicker/>
+
                 {/*Checkbox*/}
                 <Divider>
                     Checkbox
@@ -614,10 +661,22 @@ const Example = () => {
                         <SelectOption value={'policy_name'}>Policy name</SelectOption>
                     </AppSelect>
                 </Box>
+                <Typography variant={'label'}></Typography>
 
-                {/*Form initial by number*/}
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Age"
+                    input={<AppInput/>}
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+
+                {/*Form initial by number (reactjs + state)*/}
                 <Divider>
-                    Form initial by number
+                    Form initial by number (reactjs + state)
                 </Divider>
                 <Box sx={{
                     display: 'flex',
@@ -629,14 +688,43 @@ const Example = () => {
                 }} onClick={() => handleAddConfig(numConfig)}><Typography variant={'caption'}>Add configuration
                     item</Typography></Button>
                 </Box>
-                <Box>
+                <Box sx={{
+                    display: 'flex',
+                    gap: '1rem'
+                }}>
                     {objList && objList.map((item, index) => {
                         const name = objList[index].name;
-                        return (<Box key={index}>
-                            <AppInput value={name} onChange={(e) => handleSetForm(index, e)}/>
-                        </Box>)
+                        return (
+                            <AppInput key={index} value={name} onChange={(e) => handleSetForm(index, e)}/>)
                     })}
                 </Box>
+
+                {/*Form initial by number (state + state + react hook form)*/}
+                <Divider>
+                    Form initial by number (state + react hook form)
+                </Divider>
+                <Box sx={{
+                    display: 'flex',
+                    gap: '1rem'
+                }}><AppInput value={aquaConfig} onChange={(e) => setAquaConfig(e.target.value)}/>
+                    <Button onClick={() => handleAppend(aquaConfig)}>Add Config</Button>
+                </Box>
+                {fields.map((field, index) => {
+                    return (
+                        <BoxFlexCenterSpace1 key={field.id}>
+                            <Typography variant={'label'}>Name:</Typography>
+                            <AppInput fullWidth {...register(`addConfig.${index}.name`)}/>
+                        </BoxFlexCenterSpace1>
+                    )
+                })}
+
+                {/*Datepicker*/}
+                <Divider>
+                    Datepicker
+                </Divider>
+                <AppInput type={'date'} sx={{
+                    width: '30%'
+                }}/>
             </Stack>
         </AppBox>
     </>)
