@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 const Home: NextPage = (props: any) => {
     const {resolvedUrl} = props;
     const todo = useSelector(selectTodo);
+    const url = process.env.API_URL;
 
     return (
         <div className={styles.container}>
@@ -28,7 +29,7 @@ const Home: NextPage = (props: any) => {
                 <Link href={'/demo'}>
                     <h3>Navigate to: demo</h3>
                 </Link>
-                <Typography>URL: {process.env.API_URL}</Typography>
+                <Typography>URL: {url}</Typography>
             </main>
 
             <footer className={styles.footer}>
