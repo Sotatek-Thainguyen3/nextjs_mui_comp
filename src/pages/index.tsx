@@ -5,6 +5,7 @@ import styles from '../../styles/Home.module.css'
 import {_setTitle, selectTodo, wrapper} from "../state";
 import {useSelector} from "react-redux";
 import Link from "next/link";
+import { Typography } from '@mui/material';
 
 const Home: NextPage = (props: any) => {
     const {resolvedUrl} = props;
@@ -27,6 +28,7 @@ const Home: NextPage = (props: any) => {
                 <Link href={'/demo'}>
                     <h3>Navigate to: demo</h3>
                 </Link>
+                <Typography>URL: {process.env.API_URL}</Typography>
             </main>
 
             <footer className={styles.footer}>
