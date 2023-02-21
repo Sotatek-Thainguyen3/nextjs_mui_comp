@@ -5,10 +5,14 @@ import styles from '../../styles/Home.module.css'
 import {_setTitle, selectTodo, wrapper} from "../state";
 import {useSelector} from "react-redux";
 import Link from "next/link";
+import { Typography } from '@mui/material';
+import dayjs from 'dayjs';
+import { DateTime } from 'luxon';
 
 const Home: NextPage = (props: any) => {
     const {resolvedUrl} = props;
     const todo = useSelector(selectTodo);
+    const date = dayjs(new Date()).format('YYYY-MM-DD');
 
     return (
         <div className={styles.container}>
@@ -28,6 +32,7 @@ const Home: NextPage = (props: any) => {
                 <Link href={'/'}>
                     <h3>Navigate to: index</h3>
                 </Link>
+                <Typography>Date: {date}</Typography>
             </main>
 
             <footer className={styles.footer}>

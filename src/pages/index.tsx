@@ -12,6 +12,8 @@ const Home: NextPage = (props: any) => {
     const todo = useSelector(selectTodo);
     const url = process.env.NEXT_PUBLIC_API_URL;
 
+    const date = new Date().toISOString();
+
     return (
         <div className={styles.container}>
             <Head>
@@ -30,6 +32,7 @@ const Home: NextPage = (props: any) => {
                     <h3>Navigate to: demo</h3>
                 </Link>
                 <Typography>URL: {url}</Typography>
+                <Typography>date: {date}</Typography>
             </main>
 
             <footer className={styles.footer}>
